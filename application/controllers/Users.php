@@ -22,6 +22,15 @@ class Users extends CI_Controller {
     
     public function view($userId = NULL)
     {
-        $data['users_item'] = $this->users_model->get_users($userId);
+        if($userId != NULL){
+            $data['users_item'] = $this->users_model->get_users($userId);
+            
+            $data['title'] = 'User: ' . $data['users_item']['name'] . ' ' . $data['users_item']['surname'];
+           // $data['action_buttons_top'] = '<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="modal" data-target="#newUserForm">'
+           //             . '<i class="fa fa-plus-circle"></i> SAVE</button>';
+            $this->load->view('templates/header', $data);
+            $this->load->view('users/user', $data);
+            $this->load->view('templates/footer');
+        }
     }
 }

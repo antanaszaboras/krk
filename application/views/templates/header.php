@@ -43,16 +43,21 @@ $this->load->helper('url');
                     <li class="active">
                         <a href="/"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
-                    <h3 class="menu-title">PERSONS</h3><!-- /.menu-title -->
-                    <li>
-                        <a href="users"> <i class="menu-icon fa fa-users"></i>Users</a>
-                    </li>
-                    <li>
-                        <a href="clients"> <i class="menu-icon fa fa-address-book-o"></i>Clients</a>
-                    </li>
+                    
                     <h3 class="menu-title">ACTIONS</h3><!-- /.menu-title -->
                     <li>
-                        <a href="jobs"> <i class="menu-icon fa fa-check-square-o"></i>Jobs</a>
+                        <a href="/jobs"> <i class="menu-icon fa fa-check-square-o"></i>Jobs</a>
+                    </li>
+                    <h3 class="menu-title">My Data</h3><!-- /.menu-title -->
+                    <li>
+                        <a href="/contacts"> <i class="menu-icon fa fa-address-book"></i>Contacts</a>
+                    </li>
+                    <li>
+                        <a href="/clients"> <i class="menu-icon fa fa-building"></i>Clients</a>
+                    </li>
+                     <h3 class="menu-title">ADMINISTRATOR</h3><!-- /.menu-title -->
+                    <li>
+                        <a href="/users"> <i class="menu-icon fa fa-users"></i>Users</a>
                     </li>
                    
                 </ul>

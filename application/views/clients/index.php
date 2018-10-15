@@ -1,6 +1,6 @@
 <div class="container-fluid">
 <?php foreach ($clients as $clients_item):?>
-     <div class="col-sm-6 col-md-4 col-lg-4 col-xl-2">
+     <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3">
         <div class="card">
             <h5 class="card-header"><?php echo $clients_item['short_name'];?></h5>
             

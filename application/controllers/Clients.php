@@ -29,6 +29,14 @@ class Clients extends CI_Controller {
     
     public function view($clientId = NULL)
     {
-        $data['clients_item'] = $this->clients_model->get_clients($clientId);
+        if($clientId != NULL){
+            
+            $data['clients_item'] = $this->clients_model->get_clients($clientId);
+            $data['title'] = 'Client: ' . $data['clients_item']['company_name'];
+            $this->load->view('templates/header', $data);
+            $this->load->view('clients/client', $data);
+            $this->load->view('templates/footer');
+        }
+
     }
 }
