@@ -8,7 +8,7 @@ class Clients_model extends CI_Model{
     public function get_clients($clientId = FALSE){
         if($clientId === FALSE)
         {
-            $query = $this->db->get('client');
+            $query = $this->db->get_where('client', array('is_deleted =' => '0'));
             return $query->result_array();
         }
         
