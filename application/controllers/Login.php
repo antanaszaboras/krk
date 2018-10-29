@@ -32,22 +32,20 @@ class Login extends CI_Controller {
 		if($this->input->post('login') == 'LOGIN')
 			{
 				$this->form_validation->set_rules('user', 'Username', 'trim|required');
-                                $this->form_validation->set_rules('pass', 'Password', 'trim|required|callback_check_details');
-				//$this->form_validation->set_rules('pass', 'Password', 'trim|required|xss_clean|callback_check_details');
-				 
-				//if($this->form_validation->run() == FALSE)
-                                if($this->check_datails($this->input->post('pass')) == FALSE)
+                                //$this->form_validation->set_rules('pass', 'Password', 'trim|callback_check_details');
+				$this->form_validation->set_rules('pass', 'Password', 'trim|required|xss_clean|callback_check_details');
+				if($this->form_validation->run() == FALSE)
 				   {
 					    $this->session->set_flashdata('message_required','Please fill-in required textbox.');
                                             redirect('login');
 				   }
 				else
 				{
-                                            redirect('');
+                                           redirect('');
 				}
 			}
 	}
-	public function check_datails($pass)
+	public function check_details($pass)
 	{
 	   $user = $this->input->post('user');
 	   $result = $this->login_model->know_details($user, $pass);
