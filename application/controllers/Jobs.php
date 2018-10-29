@@ -1,6 +1,6 @@
 <?php
 
-class Jobs extends CI_Controller {
+class Jobs extends MY_Controller {
     
     public function __construct() 
     {
