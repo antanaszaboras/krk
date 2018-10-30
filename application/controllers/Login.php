@@ -32,7 +32,6 @@ class Login extends CI_Controller {
 		if($this->input->post('login') == 'LOGIN')
 			{
 				$this->form_validation->set_rules('user', 'Username', 'trim|required');
-                                //$this->form_validation->set_rules('pass', 'Password', 'trim|callback_check_details');
 				$this->form_validation->set_rules('pass', 'Password', 'trim|required|xss_clean|callback_check_details');
 				if($this->form_validation->run() == FALSE)
 				   {

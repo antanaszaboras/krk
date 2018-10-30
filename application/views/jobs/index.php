@@ -10,6 +10,7 @@
             <th>Date Creted</th>
             <th>Date Updated</th>
             <th>Created By</th>
+            <th>Asigned By</th>
           </tr>
         </thead>
         <tbody id="myTable">
@@ -21,11 +22,16 @@
             <td><?php echo date("Y-m-d H:i", strtotime($jobs_item["date_created"])); ?></td>
             <td><?php echo date("Y-m-d H:i", strtotime($jobs_item["date_updated"])); ?></td>
             <td><?php echo $jobs_item["name"] . ' ' , $jobs_item["surname"]; ?></td>
-            <td><?php //echo $jobs_item["asigned_name"] . ' ' , $jobs_item["asigned_surname"]; ?></td>
+            <td><?php echo $jobs_item["asigned_name"] . ' ' , $jobs_item["asigned_surname"]; ?></td>
           </tr>
     <?php endforeach; ?>
         </tbody>
     </table>
+    <div class="text-center container-fluid">
+        <ul class="pagination justify-content-center">
+            <?php echo $pagination; ?>
+        </ul>
+    </div>
 </div>
 <div class="modal fade" id="newUserForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
