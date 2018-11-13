@@ -80,5 +80,68 @@ class Jobs_model extends CI_Model{
         $this->db->join('user','job.created_user_id = user.id','left');
         $this->db->join('user asgn','job.asigned_user_id=asgn.id ','left');
         $this->db->join('job_group','job.task_group_id=job_group.id','left');
+        $this->db->where('job.is_deleted', 0);
+        $this->db->where('job.state', 1);
+        $this->db->order_by('job.id', 'DESC');
+    }
+    
+    public function create_job(){
+        $this->load->helper('url');
+        $this->load->library('session');
+        $ids = explode("-", $this->input->post('contact'));
+        $data = array(
+          'state' => 1,
+          'client_id' => $ids[0],
+          'contact_id' => $ids[1],
+          'title' => $this->input->post('title'),
+          'description' => $this->input->post('description'),
+          'task_group_id' => $this->input->post('group'),
+          'created_user_id' => $this->session->userdata['logged_in']['id'],
+          'asigned_user_id' => $this->input->post('assigned_to'),
+          'date_created' => date('Y-m-d H:i:s'),
+          'is_deleted' => 0
+        );   
+        return $this->db->insert('job', $data);
+    }
+    
+    public function get_users(){
+        $this->db->select("id, CONCAT_WS(' ', name, surname) AS name");
+        $this->db->from('user');
+        $this->db->where('is_deleted', 0);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            $rawData = $query->result_array();
+            return $rawData;
+        }
+        return false;        
+    }
+    
+    public function get_groups(){
+        $this->db->select('id, title');
+        $this->db->from('job_group'); 
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            $rawData = $query->result_array();
+            return $rawData;
+        }
+        return false;      
+    }
+    
+    public function get_contacts(){
+        $this->db->select("CONCAT_WS('-', client.id, contact.id) AS id,"
+                . ' client.company_name AS company_name,'
+                . " CONCAT_WS(' ', contact.name, contact.surname) AS name");
+        $this->db->from('contact');
+        $this->db->join('client','contact.client_id = client.id','left');
+        $this->db->where('contact.is_deleted', 0);
+        $this->db->where('client.is_deleted', 0);
+        $this->db->order_by("company_name", "asc");
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            $rawData = $query->result_array();
+            return $rawData;
+        }
+        return false;  
+        
     }
 }

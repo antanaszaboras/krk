@@ -12,7 +12,13 @@ class Jobs extends MY_Controller {
     
     public function index()
     {
-           
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        
+        $data['job_groups'] = $this->jobs_model->get_groups();
+        $data['users'] = $this->jobs_model->get_users();
+        $data['contacts'] = $this->jobs_model->get_contacts();
+        
         //Pagination init
         $config = array();
         $config['base_url'] = base_url() .'jobs';
@@ -45,5 +51,23 @@ class Jobs extends MY_Controller {
     {
         $data['jobs_item'] = $this->jobs_model->get_jobs($jobId);
     }
+    
+    public function create()
+    {
+        $this->load->library('session');
+        $result = $this->jobs_model->create_job();
+        $this->create_response($result, 'Job Created.', 'Job creation failed.');
+        redirect('jobs/index');   
+    }
+    
+    
+    
+    private function create_response($result, $success_text, $error_text){
+        if($result){
+            $this->session->set_flashdata('message','<div class="alert alert-success"><strong>Success!</strong> ' . $success_text . '</div>');
+        }else{
+            $this->session->set_flashdata('message','<div class="alert alert-danger"><strong>Error!</strong> ' . $error_text . '</div>');
+        }
+   }
     
 }

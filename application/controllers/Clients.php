@@ -30,22 +30,15 @@ class Clients extends MY_Controller {
             $this->load->helper('form');
             $this->load->library('form_validation');
         
-            $this->form_validation->set_rules('companyname', 'Company Name', 'required');
-            $this->form_validation->set_rules('shortname', 'Company short name', 'required');
+            //$this->form_validation->set_rules('companyname', 'Company Name', 'required');
+            //$this->form_validation->set_rules('shortname', 'Company short name', 'required');
             
             $data['clients_item'] = $this->clients_model->get_clients($clientId);
             $data['title'] = 'Client: ' . $data['clients_item']['company_name'];
-            if ($this->form_validation->run() === FALSE)
-            {
+
                 $this->load->view('templates/header', $data);
                 $this->load->view('clients/client', $data);
                 $this->load->view('templates/footer');
-            }
-            else
-            {
-                $this->clients_model->update_client($clientId);
-                $this->load->view('clients/index');
-            }   
         }
     }
     
@@ -67,7 +60,8 @@ class Clients extends MY_Controller {
         }
         else
         {
-            $this->clients_model->set_client();
+            $result = $this->clients_model->set_client();
+            $this->create_response($result, 'Client created.', 'Client creation failed.');
             redirect('clients/index');
         }   
     }
@@ -88,9 +82,25 @@ class Clients extends MY_Controller {
             }
             else
             {
-                $this->clients_model->update_client();
+                $result = $this->clients_model->update_client();
+                $this->create_response($result, 'Client updated.', 'Client update failed.');
                 redirect('clients/index');
             }   
     }
     
+    public function delete()
+    {
+        $this->load->library('session');
+        $result = $this->clients_model->delete_client($this->uri->segment(3));
+        $this->create_response($result, 'Client deleted.', 'Client deletion failed.');
+        redirect('clients/index');   
+    }
+    
+   private function create_response($result, $success_text, $error_text){
+        if($result){
+            $this->session->set_flashdata('message','<div class="alert alert-success"><strong>Success!</strong> ' . $success_text . '</div>');
+        }else{
+            $this->session->set_flashdata('message','<div class="alert alert-danger"><strong>Error!</strong> ' . $error_text . '</div>');
+        }
+   }
 }

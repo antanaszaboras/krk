@@ -55,5 +55,17 @@ class Clients_model extends CI_Model{
         return $this->db->update('client', $data);
     }
     
+    public function delete_client($id)
+    {
+        //check if has rights
+        //  <...>
+        $data = array(
+            'is_deleted' => 1,
+            'date_updated' => date('Y-m-d H:i:s')
+        );
+        $this->db->where('id', $id);
+        return $this->db->update('client', $data);
+    }
+    
     
 }
