@@ -53,6 +53,7 @@ $route['users/(:num)'] = 'users/view/$1';
 $route['users'] = 'users';
 $route['contacts/(:num)'] = 'contacts/view/$1';
 $route['contacts'] = 'contacts';
+$route['clients/create'] = 'clients/create';
 $route['clients/(:num)'] = 'clients/view/$1';
 $route['clients'] = 'clients';
 $route['jobs/edit/(:any)'] = 'jobs/view/$1';

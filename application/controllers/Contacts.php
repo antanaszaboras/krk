@@ -24,7 +24,8 @@ class Contacts extends MY_Controller {
     {
         if($contactId != NULL){
             $data['contacts_item'] = $this->contacts_model->get_contacts($contactId);
-            
+            $data['company'] = $this->contacts_model->get_companies();
+                    
             $data['title'] = 'Contact: ' . $data['contacts_item']['name'] . ' ' . $data['contacts_item']['surname'];
            // $data['action_buttons_top'] = '<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="modal" data-target="#newUserForm">'
            //             . '<i class="fa fa-plus-circle"></i> SAVE</button>';

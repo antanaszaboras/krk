@@ -36,12 +36,11 @@
               </select>
             </div>
             <div class="col-md-6 mb-2">
-              <label for="validationServer05">Company</label>
-              <select class="custom-select" id="validationServer05" placeholder="Select.."name="role" required>
-                  <option value="1">Company 1</option>
-                  <option value="2">Company 2</option>
-                  <option value="2">Company 3</option>
-                  <option value="2">Company 4</option>
+              <label for="validationServer04">Company</label>
+              <select class="custom-select" id="validationServer04" placeholder="Select.."name="company">
+                  <?php foreach ($company AS $company_item): ?> 
+                    <option value="<?php echo $company_item['id'] ?>"><?php echo $company_item['company_name']; ?></option>
+                  <?php endforeach; ?>
               </select>
             </div>
             <div class="col-md-4 mb-2">

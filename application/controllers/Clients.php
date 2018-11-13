@@ -17,11 +17,8 @@ class Clients extends MY_Controller {
         $data['badges'] = $this->clients_model->get_client_contact_sum();
         $data['title'] = 'Client list';
         $data['action_buttons_top'] = 
-                    '<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="modal" data-target="#newClientForm">'
-                    . '<i class="fa fa-plus-circle"></i> ADD CLIENT</button>';
-        $data['action_buttons_top'] .= 
-                    '<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="modal" data-target="#newContactForm">'
-                    . '<i class="fa fa-plus-circle"></i> ADD CONTACT</button>';
+                    '<div class="btn-group"><a href="/clients/create" class="btn btn-secondary" role="button">'
+                    . '<i class="fa fa-plus-circle"></i> ADD CLIENT</a></div>';
         $this->load->view('templates/header', $data);
         $this->load->view('clients/index', $data);
         $this->load->view('templates/footer');
@@ -30,13 +27,70 @@ class Clients extends MY_Controller {
     public function view($clientId = NULL)
     {
         if($clientId != NULL){
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+        
+            $this->form_validation->set_rules('companyname', 'Company Name', 'required');
+            $this->form_validation->set_rules('shortname', 'Company short name', 'required');
             
             $data['clients_item'] = $this->clients_model->get_clients($clientId);
             $data['title'] = 'Client: ' . $data['clients_item']['company_name'];
+            if ($this->form_validation->run() === FALSE)
+            {
+                $this->load->view('templates/header', $data);
+                $this->load->view('clients/client', $data);
+                $this->load->view('templates/footer');
+            }
+            else
+            {
+                $this->clients_model->update_client($clientId);
+                $this->load->view('clients/index');
+            }   
+        }
+    }
+    
+    public function create()
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $data['title'] = 'Add new Client';
+
+        $this->form_validation->set_rules('companyname', 'Company Name', 'required');
+        $this->form_validation->set_rules('shortname', 'Company short name', 'required');
+
+        if ($this->form_validation->run() === FALSE)
+        {
             $this->load->view('templates/header', $data);
-            $this->load->view('clients/client', $data);
+            $this->load->view('clients/create');
             $this->load->view('templates/footer');
         }
-
+        else
+        {
+            $this->clients_model->set_client();
+            redirect('clients/index');
+        }   
     }
+    
+    public function update()
+    {
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+        
+            $this->form_validation->set_rules('companyname', 'Company Name', 'required');
+            $this->form_validation->set_rules('shortname', 'Company short name', 'required');
+            
+            if ($this->form_validation->run() === FALSE)
+            {
+                $this->load->view('templates/header', $data);
+                $this->load->view('clients/client', $data);
+                $this->load->view('templates/footer');
+            }
+            else
+            {
+                $this->clients_model->update_client();
+                redirect('clients/index');
+            }   
+    }
+    
 }

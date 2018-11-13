@@ -29,4 +29,31 @@ class Clients_model extends CI_Model{
             return  $resultArray;
         }
     }
+    
+    public function set_client()
+    {
+        $this->load->helper('url');
+        $data = array(
+          'state' => $this->input->post('state'),
+          'company_name' => $this->input->post('companyname'),
+          'short_name' => $this->input->post('shortname'),
+          'date_created' => date('Y-m-d H:i:s'),
+        );
+        return $this->db->insert('client', $data);
+    }
+    
+    public function update_client()
+    {
+        $this->load->helper('url');
+        $data = array(
+          'state' => $this->input->post('state'),
+          'company_name' => $this->input->post('companyname'),
+          'short_name' => $this->input->post('shortname'),
+          'date_updated' => date('Y-m-d H:i:s')
+        );
+        $this->db->where('id', $this->input->post('clientId'));
+        return $this->db->update('client', $data);
+    }
+    
+    
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2018 at 07:35 PM
+-- Generation Time: Oct 30, 2018 at 09:18 PM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -41,9 +41,9 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id`, `state`, `company_name`, `short_name`, `date_created`, `date_updated`, `is_deleted`) VALUES
-(1, 1, 'Contoso Inc.', 'contoso', '2018-10-09 00:00:00', '2018-10-09 00:00:00', NULL),
-(2, 1, 'Varsum Ltd.', 'varsum', '2018-10-09 00:00:00', '2018-10-09 00:00:00', NULL),
-(3, 1, 'Green Planet Oil corp.', 'gpoil', '2018-10-09 00:00:00', '2018-10-09 00:00:00', NULL);
+(1, 1, 'Contoso Inc.', 'contoso', '2018-10-09 00:00:00', '2018-10-09 00:00:00', 0),
+(2, 1, 'Varsum Ltd.', 'varsum', '2018-10-09 00:00:00', '2018-10-09 00:00:00', 0),
+(3, 1, 'Green Planet Oil corp.', 'gpoil', '2018-10-09 00:00:00', '2018-10-09 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -71,10 +71,10 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `name`, `surname`, `email`, `phone`, `state`, `date_created`, `date_updated`, `updated_by_user`, `client_id`, `is_deleted`, `is_default`) VALUES
-(1, 'Astible', 'Mastrken', 'astbil@contoso.com', NULL, 1, '2018-10-09 00:00:00', '2018-10-09 00:00:00', 1, 1, NULL, 1),
-(2, 'Eskoban', 'Glazdioni', 'eskoglaz@Verst.eu', NULL, 1, '2018-10-09 00:00:00', '2018-10-09 00:00:00', 2, 2, NULL, 1),
-(3, 'Apsilon', 'Glrool', 'aspil.gr@gpoil.com', NULL, 1, '2018-10-09 00:00:00', '2018-10-09 00:00:00', 2, 3, NULL, 1),
-(4, 'Greglom', 'Trasker', 'g.trasker@gpoil.com', NULL, 1, '2018-10-09 00:00:00', '2018-10-09 00:00:00', NULL, 3, NULL, NULL);
+(1, 'Astible', 'Mastrken', 'astbil@contoso.com', '+3454484409844', 1, '2018-10-09 00:00:00', '2018-10-09 00:00:00', 1, 1, 0, 1),
+(2, 'Eskoban', 'Glazdioni', 'eskoglaz@Verst.eu', '+3454122646', 1, '2018-10-09 00:00:00', '2018-10-09 00:00:00', 2, 2, 0, 1),
+(3, 'Apsilon', 'Glrool', 'aspil.gr@gpoil.com', '+44566512321', 1, '2018-10-09 00:00:00', '2018-10-09 00:00:00', 2, 3, 0, 1),
+(4, 'Greglom', 'Trasker', 'g.trasker@gpoil.com', '+48746546131', 1, '2018-10-09 00:00:00', '2018-10-09 00:00:00', NULL, 3, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -103,9 +103,63 @@ CREATE TABLE `job` (
 --
 
 INSERT INTO `job` (`id`, `state`, `created_user_id`, `client_id`, `title`, `date_created`, `date_updated`, `date_completed`, `description`, `is_deleted`, `task_group_id`, `contact_id`, `asigned_user_id`) VALUES
-(1, 1, 1, 1, 'Atsisųsti ir įdiegti karkasą', '2018-10-09 00:00:00', NULL, NULL, NULL, NULL, 1, 1, NULL),
-(2, 1, 1, 1, 'Sukonfiguruoti karkasą', '2018-10-09 00:00:00', NULL, NULL, NULL, NULL, 1, 1, NULL),
-(3, 1, 1, 1, 'Sukurti logiką', '2018-10-09 00:00:00', NULL, NULL, '4.	Sukurti modelį, pagrindinį šabloną, valdiklį bei vaizdą informacijai iš duomenų bazės išrinkti bei pavaizduoti, naudojant pirmame laboratoriniame darbe sukurtą HTML svetainę.', NULL, 1, 1, NULL);
+(1, 1, 1, 1, 'Atsisųsti ir įdiegti karkasą', '2018-10-09 00:00:00', NULL, NULL, NULL, NULL, 1, 1, 2),
+(2, 1, 1, 1, 'Sukonfiguruoti karkasą', '2018-10-09 00:00:00', NULL, NULL, NULL, NULL, 1, 1, 2),
+(3, 1, 1, 1, 'Sukurti logiką', '2018-10-09 00:00:00', NULL, NULL, '4.	Sukurti modelį, pagrindinį šabloną, valdiklį bei vaizdą informacijai iš duomenų bazės išrinkti bei pavaizduoti, naudojant pirmame laboratoriniame darbe sukurtą HTML svetainę.', NULL, 1, 1, 2),
+(4, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(5, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(6, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(7, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(8, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(9, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(10, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(11, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(12, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(13, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(14, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(15, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(16, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(17, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(18, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(19, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(20, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(21, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(22, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(23, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(24, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(25, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(26, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(27, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(28, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(29, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(30, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(31, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(32, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(33, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(34, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(35, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(36, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(37, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(38, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(39, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(40, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(41, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(42, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(43, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(44, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(45, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(46, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(47, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(48, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(49, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(50, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(51, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(52, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(53, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(54, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(55, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(56, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1),
+(57, 1, 1, 2, 'Pagination TEST', '2018-10-30 00:00:00', '2018-10-30 00:00:00', NULL, 'Testing pagination lib', NULL, 2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -195,7 +249,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `password`, `state`, `date_created`, `date_updated`, `date_last_login`, `role`, `name`, `surname`, `email`, `phone`, `role_id`, `is_deleted`) VALUES
 (1, 'john.doe@contoso.com', 'abc123', 1, '2018-10-09 00:00:00', '2018-10-09 00:00:00', '2018-10-09 00:00:00', 1, 'John', 'Doe', 'john.doe@contoso.com', '+427033215564', 1, 0),
-(2, 'sude.doe@contoso.com', 'abc123', 1, '2018-10-09 00:00:00', '2018-10-09 00:00:00', '2018-10-09 00:00:00', 1, 'Sue', 'Doe', 'sude.doe@contoso.com', '+442556221651', 2, 0);
+(2, 'sue.doe@contoso.com', 'abc123', 1, '2018-10-09 00:00:00', '2018-10-09 00:00:00', '2018-10-09 00:00:00', 1, 'Sue', 'Doe', 'sude.doe@contoso.com', '+442556221651', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -290,7 +344,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `job_group`
 --

@@ -20,6 +20,22 @@ class Contacts_model extends CI_Model{
         }
         
         $query = $this->db->get_where('contact', array('id' => $contactId));
+        
         return $query->row_array();
+    }
+    
+    public function get_companies(){
+        
+        $this->db->select('id, company_name');
+        $this->db->from('client');
+        $this->db->where('is_deleted', '0');
+        $this->db->where('state', '1');
+        $this->db->order_by('company_name', 'ASC');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            $rawData = $query->result_array();
+            return $rawData;
+        }
+        return false;
     }
 }

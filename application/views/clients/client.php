@@ -1,3 +1,6 @@
+<?php echo validation_errors(); ?>
+<?php echo form_open('clients/update', '', array('clientId' => $clients_item['id'])); ?>
+
 <div class="container-fluid">
     <div class="col-lg-3">
          <img class="card-img-top" src="<?php echo base_url('assets/images/company_group.jpg'); ?>" alt="Card image">
@@ -7,17 +10,17 @@
           <div class="form-row">
             <div class="col-md-12 mb-2">
               <label for="validationServer01">Company Name</label>
-              <input type="text" class="form-control" id="validationServer01" placeholder="Company Inc." value="<?php echo $clients_item['company_name']; ?>" required>
+              <input type="text" name="companyname" class="form-control" id="validationServer01" placeholder="Company Inc." value="<?php echo $clients_item['company_name']; ?>" required>
             </div>
             <div class="col-md-12 mb-2">
               <label for="validationServer02">Short Name</label>
-              <input type="text" class="form-control" id="validationServer02" placeholder="comp" value="<?php echo $clients_item['short_name']; ?>">
+              <input type="text" name="shortname" class="form-control" id="validationServer02" placeholder="comp" value="<?php echo $clients_item['short_name']; ?>">
             </div>
           </div>
           <div class="form-row">
             <div class="col-md-12 mb-2">
               <label for="validationServer04">State</label>
-              <select class="custom-select" id="validationServer04" placeholder="Select.."name="state" required>
+              <select class="custom-select" id="validationServer04" placeholder="Select.." name="state" required>
                   <option value="1" default>Enabled</option>
                   <option value="2">Disabled</option>
               </select>
